@@ -5,7 +5,7 @@ def remote = [:]
   remote.password = '720728899.mN'
   remote.allowAnyHosts = true
   
-node('build-server') {
+node('slave-node') {
     def mvnHome
     
     stage('Preparation') { // for display purposes
