@@ -1,8 +1,8 @@
 def remote = [:]
   remote.name = 'deployment'
-  remote.host = '172.31.19.196'
-  remote.user = 'centos'
-  remote.password = 'Rnstech@123'
+  remote.host = '172.31.88.238'
+  remote.user = 'ec2-user'
+  remote.password = '720728899.mN'
   remote.allowAnyHosts = true
   
 node('build-server') {
@@ -35,8 +35,8 @@ node('build-server') {
     }
     stage('Deploy-to-Staging'){
          sh "mv target/*.war target/webapp.war"
-         sshCommand remote: remote, command: "sh /opt/webserver/bin/shutdown.sh"
-         sshPut remote: remote, from: 'target/webapp.war', into: '/opt/webserver/webapps/'
-         sshCommand remote: remote, command: "sh /opt/webserver/bin/startup.sh"
+         sshCommand remote: remote, command: "sh /opt/tomcat/bin/shutdown.sh"
+         sshPut remote: remote, from: 'target/webapp.war', into: '/opt/tomcat/webapps/'
+         sshCommand remote: remote, command: "sh /opt/tomcat/bin/startup.sh"
     }
 }
